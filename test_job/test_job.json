@@ -1,0 +1,40 @@
+{
+  "name" : "test_job",
+  "description" : "",
+  "role" : "arn:aws:iam::734638075853:role/aws-glueServicerole-Sidharth",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-734638075853-us-east-1/scripts/test_job.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-734638075853-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "false",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-734638075853-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 2880,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "4.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1705514661477\":{\"SparkSQL\":{\"Inputs\":[\"node-1705514557658\"],\"Name\":\"SQL Query\",\"SqlAliases\":[{\"Alias\":\"myDataSource1\",\"From\":\"node-1705514557658\"}],\"SqlQuery\":\"select * from myDataSource1\"}},\"node-1705514703164\":{\"S3GlueParquetTarget\":{\"Compression\":\"snappy\",\"Inputs\":[\"node-1705514661477\"],\"Name\":\"Amazon S3\",\"PartitionKeys\":[],\"Path\":\"s3://sid-nfh-10301/target/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1705514661146\":{\"SparkSQL\":{\"Inputs\":[\"node-1705514557658\"],\"Name\":\"SQL Query\",\"SqlAliases\":[{\"Alias\":\"myDataSource\",\"From\":\"node-1705514557658\"}],\"SqlQuery\":\"select * from myDataSource\"}},\"node-1705514557658\":{\"S3JsonSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://sid-nfh-10301/source/part-00007-e301ae7d-828a-44fd-81f1-af8cac431418-c000.json\"},\"Exclusions\":[],\"JsonPath\":\"\",\"Multiline\":false,\"Name\":\"Amazon S3\",\"OutputSchemas\":[{\"Columns\":[{\"Name\":\"geo_value\",\"Type\":\"string\"},{\"Name\":\"signal\",\"Type\":\"string\"},{\"Name\":\"time_value\",\"Type\":\"int\"},{\"Name\":\"issue\",\"Type\":\"int\"},{\"Name\":\"lag\",\"Type\":\"int\"},{\"Name\":\"value\",\"Type\":\"double\"},{\"Name\":\"stderr\",\"Type\":\"double\"},{\"Name\":\"sample_size\",\"Type\":\"double\"},{\"Name\":\"filename\",\"Type\":\"string\"},{\"Name\":\"input_path\",\"Type\":\"string\"},{\"Name\":\"data_source\",\"Type\":\"string\"},{\"Name\":\"time_type\",\"Type\":\"string\"},{\"Name\":\"geo_type\",\"Type\":\"string\"},{\"Name\":\"direction\",\"Type\":\"int\"}]}],\"Paths\":[\"s3://sid-nfh-10301/source/part-00007-e301ae7d-828a-44fd-81f1-af8cac431418-c000.json\"],\"Recurse\":true}},\"node-1705514710324\":{\"S3GlueParquetTarget\":{\"Compression\":\"snappy\",\"Inputs\":[\"node-1705514661146\"],\"Name\":\"Amazon S3\",\"PartitionKeys\":[],\"Path\":\"s3://sid-nfh-10301/test_dest/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "awsrepo",
+    "branch" : "test",
+    "folder" : "test_job"
+  }
+}
