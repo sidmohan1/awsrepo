@@ -1,0 +1,40 @@
+{
+  "name" : "sidharth_test_job",
+  "description" : "",
+  "role" : "arn:aws:iam::734638075853:role/aws-glueServicerole-Sidharth",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-734638075853-us-east-1/scripts/sidharth_test_job.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-734638075853-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "false",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-734638075853-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 2880,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "4.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1705592306033\":{\"SparkSQL\":{\"Inputs\":[\"node-1705592256182\"],\"Name\":\"SQL Query\",\"SqlAliases\":[{\"Alias\":\"myDataSource1\",\"From\":\"node-1705592256182\"}],\"SqlQuery\":\"select * from myDataSource1\"}},\"node-1705592303721\":{\"SparkSQL\":{\"Inputs\":[\"node-1705592256182\"],\"Name\":\"SQL Query\",\"SqlAliases\":[{\"Alias\":\"myDataSource\",\"From\":\"node-1705592256182\"}],\"SqlQuery\":\"select * from myDataSource\"}},\"node-1705592340748\":{\"S3DirectTarget\":{\"Compression\":\"snappy\",\"Format\":\"csv\",\"Inputs\":[\"node-1705592306033\"],\"Name\":\"Amazon S3bucket\",\"PartitionKeys\":[],\"Path\":\"s3://sid-nfh-10301/test_dest/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1705592256182\":{\"S3ParquetSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://sid-nfh-10301/source/part-00007-e301ae7d-828a-44fd-81f1-af8cac431418-c000.json\"},\"Exclusions\":[],\"Name\":\"Amazon S3\",\"Paths\":[\"s3://sid-nfh-10301/source/\"],\"Recurse\":true}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "awsrepo",
+    "branch" : "main",
+    "folder" : "sidharth_test_job"
+  }
+}
